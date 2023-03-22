@@ -17,5 +17,12 @@ def unsigned_right_shift(n, i):
     return int_overflow(n >> i)
 
 
+def left_shift(n, i):
+    x = n << i
+    if x >= 0x80000000:
+        x = -(0x100000000 - x)
+    return x
+
+
 if __name__ == "__main__":
-    print(unsigned_right_shift(-1000, 8))
+    print(left_shift(128, 24))

@@ -203,3 +203,21 @@ def h(t):
     for r in range(0, len(t) * 32, 8):
         e += chr(unsigned_right_shift(t[r >> 5], r) % 32 & 255 & 0xffff)
     return e
+
+
+def o(t):
+    """
+       function o(t) {
+        var r, e, n = "0123456789abcdef", i = "";
+        for (e = 0; e < t.length; e += 1)
+            r = t.charCodeAt(e),
+            i += n.charAt(r >>> 4 & 15) + n.charAt(15 & r);
+        return i
+    }
+    """
+    n = "0123456789abcdef"
+    i = ""
+    for e in range(0, len(t)):
+        r = ord(t[e])
+        i += n[unsigned_right_shift(r, 4) & 15] + n[15 & r]
+    return i
