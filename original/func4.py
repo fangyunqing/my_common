@@ -7,14 +7,17 @@ __author__ = 'fyq'
 
 import time
 
-n = "moonshad5moonsh2"
-i = "moonshad3moonsh0"
-o = "moonshad8moonsh6"
-a = "moonshad0moonsh1"
-s = "moonshad1moonsh9"
-h = {
+_n = "moonshad5moonsh2"
+_i = "moonshad3moonsh0"
+_o = "moonshad8moonsh6"
+_a = "moonshad0moonsh1"
+_s = "moonshad1moonsh9"
+_h = {
     "version": "v3"
 }
+
+def moonshadV3(t, r):
+    if
 
 
 def c(t, r, e):

@@ -6,9 +6,8 @@
 __author__ = 'fyq'
 
 import uuid
-
-d = "https://passport.baidu.com"
-t = "/v2/api/?getapi"
+import original.func2 as o_func2
+import original.func3 as o_func3
 
 
 def _guid_random():
@@ -23,3 +22,60 @@ def get_api_info():
         "loginType": "dialogLogin",
         "loginVersion": "v4",
     }
+
+    e = "getApiInfo"
+    p = {
+        "fillUserName": {
+            "selectedSuggestName": "pass_fillinusername_suggestuserradio",
+            "timeSpan": "ppui_fillusernametime"
+        },
+        "getApiInfo": {
+            "apiType": "class",
+        },
+        "login": {
+            "isPhone": "isPhone",
+            "logLoginType": "logLoginType",
+            "memberPass": "mem_pass",
+            "safeFlag": "safeflg",
+            "timeSpan": "ppui_logintime"
+        },
+        "reg": {
+            "logRegType": "logRegType",
+            "password": "loginpass",
+            "selectedSuggestName": "pass_reg_suggestuserradio_0",
+            "suggestIndex": "suggestIndex",
+            "suggestType": "suggestType",
+            "timeSpan": "ppui_regtime"
+        },
+        "regPhone": {
+            "logRegType": "logRegType",
+            "password": "loginpass",
+            "selectedSuggestName": "pass_reg_suggestuserradio_0",
+            "suggestIndex": "suggestIndex",
+            "suggestType": "suggestType",
+            "timeSpan": "ppui_regtime"
+        }
+    }
+
+    m = {
+        "login": {
+            "memberPass": lambda v_e: "on" if v_e else ""
+        },
+        "loginCheck": {
+            "isPhone": lambda v_e: "true" if v_e else "false"
+        }
+    }
+
+    i = o_func2.i(n, e, p.get(e, None), m.get(e, None), False)
+    d = "https://passport.baidu.com"
+    t = "/v2/api/?getapi"
+    s = {
+        "charset": "utf-8",
+        "processData": ""
+    }
+    o_func3.jsonp(d + t, i, s)
+
+
+if __name__ == "__main__":
+    get_api_info()
+
