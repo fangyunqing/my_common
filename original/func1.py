@@ -1,4 +1,5 @@
-from original.util import unsigned_right_shift
+from original.util import unsigned_right_shift, left_shift
+from urllib.parse import quote
 
 
 def _u(t, r):
@@ -186,7 +187,7 @@ def c(t, r):
 def f(t):
     e = [0 for index in range(0, (len(t) >> 2) + 1)]
     for index in range(0, len(t) * 8, 8):
-        e[index >> 5] |= (255 & ord(t[index // 8])) << index % 32
+        e[index >> 5] |= left_shift((255 & ord(t[index // 8])), index % 32)
     return e
 
 
@@ -205,7 +206,7 @@ def h(t):
     return e
 
 
-def o(t):
+def f_o(t):
     """
        function o(t) {
         var r, e, n = "0123456789abcdef", i = "";
@@ -221,3 +222,64 @@ def o(t):
         r = ord(t[e])
         i += n[unsigned_right_shift(r, 4) & 15] + n[15 & r]
     return i
+
+
+def _(t, r):
+    """
+        function _(t, r) {
+            return function s(t, r) {
+                var e, n, i = f(t), o = [], a = [];
+                for (o[15] = a[15] = undefined,
+                16 < i.length && (i = c(i, 8 * t.length)),
+                e = 0; e < 16; e += 1)
+                    o[e] = 909522486 ^ i[e],
+                    a[e] = 1549556828 ^ i[e];
+                return n = c(o.concat(f(r)), 512 + 8 * r.length),
+                h(c(a.concat(n), 640))
+            }(e(t), e(r))
+        }
+    """
+    return []
+
+
+def f_e(t):
+    """
+        function e(t) {
+            return unescape(encodeURIComponent(t))
+        }
+    """
+    return t
+
+
+def f_a(t):
+    """
+        function a(t) {
+            return function r(t) {
+                return h(c(f(t), 8 * t.length))
+            }(e(t))
+        }
+    """
+    def func(v_t):
+        return h(c(f(v_t), 8 * len(t)))
+    return func(t)
+
+
+def g(t, r, e):
+    """
+        t.exports = function g(t, r, e) {
+            return r ? e ? _(r, t) : function n(t, r) {
+                return o(_(t, r))
+            }(r, t) : e ? a(t) : function i(t) {
+                return o(a(t))
+            }(t)
+    """
+    if r:
+        if e:
+            return _(r, t)
+        else:
+            return f_o(_(r, t))
+    else:
+        if e:
+            return f_a(t)
+        else:
+            return f_o(f_a(t))

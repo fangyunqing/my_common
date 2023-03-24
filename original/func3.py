@@ -6,6 +6,7 @@
 __author__ = 'fyq'
 
 import time
+import original.func4 as o_func4
 
 
 def jsonp(n, i, s):
@@ -90,5 +91,7 @@ def jsonp(n, i, s):
     _ = ""
     if v < len(b):
         _ = f[b[v]]
+    if _ in o_func4.moonshadV3:
+        i += o_func4.moonshadV3[_](o, {})
 
 

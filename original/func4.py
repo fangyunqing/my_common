@@ -16,8 +16,13 @@ _h = {
     "version": "v3"
 }
 
-def moonshadV3(t, r):
-    if
+moonshadV3 = {
+    "OOOO00": lambda t, r: c(t, r, _n),
+    "OOO00O": lambda t, r: c(t, r, _i),
+    "OOO000": lambda t, r: c(t, r, _o),
+    "OOO0OO": lambda t, r: c(t, r, _a),
+    "O0OOO0": lambda t, r: c(t, r, _s)
+}
 
 
 def c(t, r, e):
@@ -58,17 +63,16 @@ def c(t, r, e):
         }
     """
     v_i = {k: v for k, v in t.items()}
-    v_i["alg"] = h["version"]
+    v_i["alg"] = _h["version"]
     v_i["time"] = round(time.time())
     v_i.pop("sig", "")
     v_i.pop("traceid", "")
     v_i.pop("callback", "")
     v_i.pop("elapsed", "")
     v_i.pop("shaOne", "")
-    v_o = None
-    v_a = None
+    v_o = int(time.time() * 1000)
+    v_a = v_o
     while True:
-        v_a = int(time.time() * 1000)
-        v_o = v_a
+
 
 
