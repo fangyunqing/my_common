@@ -1,7 +1,7 @@
 import operator
 import unittest
 
-from original.func1 import f_o, f
+from original.func1 import f_o, f, c
 
 
 class TestFunc1(unittest.TestCase):
@@ -12,7 +12,13 @@ class TestFunc1(unittest.TestCase):
         self.assertEqual(f_o(t), "ef6866e9b1cc1856fe509f26d95a7d1b")
 
     def test_f(self):
-        t = "1679620285240"
-        res = [959919665, 842019382, 875705656, 48]
+        t = "1679661109435"
+        res = [959919665, 825308726, 859060528, 53]
         self.assertTrue(operator.eq(res, f(t)))
+
+    def test_c(self):
+        t = [959919665, 825308726, 859060528, 53]
+        r = len("1679661109435") * 8
+        c(t, r)
+
 

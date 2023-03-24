@@ -9,8 +9,9 @@ def _u(t, r):
             return (t >> 16) + (r >> 16) + (e >> 16) << 16 | 65535 & e
         }
     """
+    t = t if t else 0
     e = (65535 & t) + (65535 & r)
-    return (t >> 16) + (r >> 16) + (e >> 16) << 16 | 65535 & e
+    return left_shift((t >> 16) + (r >> 16) + (e >> 16), 16) | 65535 & e
 
 
 def _s(t, r, e, n, i, o):
@@ -23,9 +24,9 @@ def _s(t, r, e, n, i, o):
     """
 
     def a(_t, _r):
-        return _t << _r | unsigned_right_shift(_t, 32) - _r
+        return left_shift(_t, _r) | unsigned_right_shift(_t, 32 - _r)
 
-    return _u(a(_u(_u(t, r), _u(n, o)), i), e)
+    return _u(a(_u(_u(r, t), _u(n, o)), i), e)
 
 
 def _l(t, r, e, n, i, o, a):
@@ -79,8 +80,8 @@ def c(t, r):
             return [s, c, h, f]
         }
     """
-    t[r >> 5] |= 128 << r % 32
-    location = 14 + (r + 64 >> 9 << 4)
+    t[r >> 5] |= left_shift(128, r % 32)
+    location = 14 + left_shift(unsigned_right_shift (r + 64, 9), 4)
     while len(t) < location + 1:
         t.append(None)
     t[location] = r

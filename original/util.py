@@ -17,11 +17,14 @@ def unsigned_right_shift(n, i):
     return int_overflow(n >> i)
 
 
-def left_shift(n, i):
-    x = n << i
-    if x >= 0x80000000:
-        x = -(0x100000000 - x)
-    return x
+def left_shift(based, counter):
+    if not based:
+        return 0
+    val = based << (counter % 32)
+    maxint = 2147483647
+    if not -maxint - 1 <= val <= maxint:
+        val = (val + (maxint + 1)) % (2 * (maxint + 1)) - maxint - 1
+    return val
 
 
 if __name__ == "__main__":
