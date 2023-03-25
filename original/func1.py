@@ -206,7 +206,7 @@ def h(t):
     """
     e = ""
     for r in range(0, len(t) * 32, 8):
-        e += chr(unsigned_right_shift(t[r >> 5], r) % 32 & 255 & 0xffff)
+        e += chr(unsigned_right_shift(t[r >> 5], r % 32) & 255)
     return e
 
 
@@ -265,7 +265,7 @@ def f_a(t):
     """
     def func(v_t):
         return h(c(f(v_t), 8 * len(t)))
-    return func(t)
+    return func(str(t))
 
 
 def g(t, r, e):

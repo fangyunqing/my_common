@@ -1,13 +1,12 @@
 import operator
 import unittest
 
-from original.func1 import f_o, f, c
+from original.func1 import f_o, f, c, h
 
 
 class TestFunc1(unittest.TestCase):
 
     def test_o(self):
-
         t = "ïhfé±Ì\u0018VþP&ÙZ}\u001b"
         self.assertEqual(f_o(t), "ef6866e9b1cc1856fe509f26d95a7d1b")
 
@@ -21,4 +20,7 @@ class TestFunc1(unittest.TestCase):
         r = len("1679661109435") * 8
         c(t, r)
 
-
+    def test_h(self):
+        t = [1312666516, 33184832, -1832418746, -418666474]
+        e = "³=N@\\ú\u0001FÇ\u0016¨\u000bç"
+        self.assertEqual(h(t), e)
