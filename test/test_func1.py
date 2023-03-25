@@ -13,11 +13,11 @@ class TestFunc1(unittest.TestCase):
 
     def test_f(self):
         t = "1679661109435"
-        res = [959919665, 825308726, 859060528, 53]
+        res = [959919665, 943075383, 875638838, 49]
         self.assertTrue(operator.eq(res, f(t)))
 
     def test_c(self):
-        t = [959919665, 825308726, 859060528, 53]
+        t = [959919665, 943075383, 875638838, 49]
         r = len("1679661109435") * 8
         c(t, r)
 

@@ -1,3 +1,4 @@
+from original.default_list import DefaultList
 from original.util import unsigned_right_shift, left_shift
 from urllib.parse import quote
 
@@ -83,15 +84,17 @@ def c(t, r):
     t[r >> 5] |= left_shift(128, r % 32)
     location = 14 + left_shift(unsigned_right_shift (r + 64, 9), 4)
     while len(t) < location + 1:
-        t.append(None)
+        t.append(0)
     t[location] = r
+
+    t = DefaultList(t)
 
     v_s = 1732584193
     v_c = -271733879
     v_h = -1732584194
     v_f = 271733878
 
-    for e in range(0, len(t) * 8, 16):
+    for e in range(0, len(t), 16):
         v_i = v_c
         v_o = v_h
         v_a = v_f
