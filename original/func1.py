@@ -264,7 +264,7 @@ def f_a(t):
         }
     """
     def func(v_t):
-        return h(c(f(v_t), 8 * len(t)))
+        return h(c(f(v_t), 8 * len(v_t)))
     return func(str(t))
 
 

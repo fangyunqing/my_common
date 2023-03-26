@@ -6,6 +6,8 @@
 __author__ = 'fyq'
 
 import time
+import original.func5 as o_func5
+import original.func1 as o_func1
 
 _n = "moonshad5moonsh2"
 _i = "moonshad3moonsh0"
@@ -73,6 +75,9 @@ def c(t, r, e):
     v_o = int(time.time() * 1000)
     v_a = v_o
     while True:
+        v_a = o_func5.i(o_func5.g(o_func5.o(o_func1.g(v_a, None, None))))
+        if str(v_a)[0: 2] == "00":
+            break
 
-
+    
 
