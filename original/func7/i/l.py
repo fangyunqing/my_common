@@ -10,3 +10,4 @@ def init(t, r):
         ret["sigBytes"] = r
     else:
         ret["sigBytes"] = len(ret["words"]) * 4
+    return ret
