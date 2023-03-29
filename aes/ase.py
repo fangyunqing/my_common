@@ -6,47 +6,47 @@ import binascii
 # 数据类
 class MData:
 
-    def __init__(self, data=b"", characterSet='utf-8'):
+    def __init__(self, data=b"", character_set='utf-8'):
         self.data = data
-        self.characterSet = characterSet
+        self.character_set = character_set
 
-    def saveData(self, FileName):
-        with open(FileName, 'wb') as f:
+    def save_data(self, file_name):
+        with open(file_name, 'wb') as f:
             f.write(self.data)
 
-    def fromString(self, data):
-        self.data = data.encode(self.characterSet)
+    def from_string(self, data):
+        self.data = data.encode(self.character_set)
         return self.data
 
-    def fromBase64(self, data):
-        self.data = base64.b64decode(data.encode(self.characterSet))
+    def from_base64(self, data):
+        self.data = base64.b64decode(data.encode(self.character_set))
         return self.data
 
-    def fromHexStr(self, data):
+    def from_hex(self, data):
         self.data = binascii.a2b_hex(data)
         return self.data
 
-    def toString(self):
-        return self.data.decode(self.characterSet)
+    def to_string(self):
+        return self.data.decode(self.character_set)
 
-    def toBase64(self):
+    def to_base64(self):
         return base64.b64encode(self.data).decode()
 
-    def toHexStr(self):
+    def to_hex(self):
         return binascii.b2a_hex(self.data).decode()
 
-    def toBytes(self):
+    def to_bytes(self):
         return self.data
 
     def __str__(self):
         try:
-            return self.toString()
+            return self.to_string()
         except ValueError:
-            return self.toBase64()
+            return self.to_base64()
 
 
 class AESCryptor:
-    def __init__(self, key, mode, iv, paddingMode="NoPadding", characterSet="utf-8"):
+    def __init__(self, key, mode, iv, padding_mode="NoPadding", character_set="utf-8"):
         """
         构建一个AES对象
         key: 秘钥，字节型数据
@@ -58,19 +58,19 @@ class AESCryptor:
         self.key = key
         self.mode = mode
         self.iv = iv
-        self.characterSet = characterSet
-        self.paddingMode = paddingMode
-        self.data = ""
+        self.characterSet = character_set
+        self.paddingMode = padding_mode
+        self.data = b""
 
     @staticmethod
-    def __ZeroPadding(data):
+    def _zero_padding(data):
         data += b'\x00'
         while len(data) % 16 != 0:
             data += b'\x00'
         return data
 
     @staticmethod
-    def __StripZeroPadding(data):
+    def _strip_zero_padding(data):
         data = data[:-1]
         while len(data) % 16 != 0:
             data = data.rstrip(b'\x00')
@@ -79,99 +79,99 @@ class AESCryptor:
         return data
 
     @staticmethod
-    def __PKCS5_7Padding(data):
+    def _pkcs5_7padding(data):
         need_size = 16 - len(data) % 16
         if need_size == 0:
             need_size = 16
         return data + need_size.to_bytes(1, 'little') * need_size
 
     @staticmethod
-    def __StripPKCS5_7Padding(data):
+    def _strip_pkcs5_7padding(data):
         padding_size = data[-1]
         return data.rstrip(padding_size.to_bytes(1, 'little'))
 
-    def __paddingData(self, data):
+    def _padding_data(self, data):
         if self.paddingMode == "NoPadding":
             if len(data) % 16 == 0:
                 return data
             else:
-                return self.__ZeroPadding(data)
+                return self._zero_padding(data)
         elif self.paddingMode == "ZeroPadding":
-            return self.__ZeroPadding(data)
+            return self._zero_padding(data)
         elif self.paddingMode == "PKCS5Padding" or self.paddingMode == "PKCS7Padding":
-            return self.__PKCS5_7Padding(data)
+            return self._pkcs5_7padding(data)
         else:
             print("不支持Padding")
 
-    def __stripPaddingData(self, data):
+    def _strip_padding_data(self, data):
         if self.paddingMode == "NoPadding":
-            return self.__StripZeroPadding(data)
+            return self._strip_zero_padding(data)
         elif self.paddingMode == "ZeroPadding":
-            return self.__StripZeroPadding(data)
+            return self._strip_zero_padding(data)
 
         elif self.paddingMode == "PKCS5Padding" or self.paddingMode == "PKCS7Padding":
-            return self.__StripPKCS5_7Padding(data)
+            return self._strip_pkcs5_7padding(data)
         else:
             print("不支持Padding")
 
-    def setCharacterSet(self, characterSet):
+    def set_character_set(self, characterSet):
         """
         设置字符集编码
         characterSet: 字符集编码
         """
         self.characterSet = characterSet
 
-    def setPaddingMode(self, mode):
+    def set_padding_mode(self, mode):
         """
         设置填充模式
         mode: 可选NoPadding，ZeroPadding，PKCS5Padding，PKCS7Padding
         """
         self.paddingMode = mode
 
-    def decryptFromBase64(self, en_text):
+    def decrypt_from_base64(self, en_text):
         """
         从base64编码字符串编码进行AES解密
         entext: 数据类型str
         """
-        mData = MData(characterSet=self.characterSet)
-        self.data = mData.fromBase64(en_text)
-        return self.__decrypt()
+        m_data = MData(character_set=self.characterSet)
+        self.data = m_data.from_base64(en_text)
+        return self._decrypt()
 
-    def decryptFromHexStr(self, en_text):
+    def decrypt_from_hex(self, en_text):
         """
-        从hexstr编码字符串编码进行AES解密
-        entext: 数据类型str
+        从hex编码字符串编码进行AES解密
+        en_text: 数据类型str
         """
-        mData = MData(characterSet=self.characterSet)
-        self.data = mData.fromHexStr(en_text)
-        return self.__decrypt()
+        m_data = MData(character_set=self.characterSet)
+        self.data = m_data.from_hex(en_text)
+        return self._decrypt()
 
-    def decryptFromString(self, en_text):
+    def decrypt_from_string(self, en_text):
         """
         从字符串进行AES解密
-        entext: 数据类型str
+        en_text: 数据类型str
         """
-        m_data = MData(characterSet=self.characterSet)
-        self.data = m_data.fromString(en_text)
-        return self.__decrypt()
+        m_data = MData(character_set=self.characterSet)
+        self.data = m_data.from_string(en_text)
+        return self._decrypt()
 
-    def decryptFromBytes(self, en_text):
+    def decrypt_from_bytes(self, en_text):
         """
         从二进制进行AES解密
-        entext: 数据类型bytes
+        en_text: 数据类型bytes
         """
         self.data = en_text
-        return self.__decrypt()
+        return self._decrypt()
 
-    def encryptFromString(self, data):
+    def encrypt_from_string(self, data):
         """
         对字符串进行AES加密
         data: 待加密字符串，数据类型为str
         """
         self.data = data.encode(self.characterSet)
-        return self.__encrypt()
+        return self._encrypt()
 
-    def __encrypt(self):
+    def _encrypt(self):
         if self.mode == AES.MODE_CBC:
             aes = AES.new(self.key, self.mode, self.iv)
         elif self.mode == AES.MODE_ECB:
@@ -180,11 +180,11 @@ class AESCryptor:
             print("不支持这种模式")
             return
 
-        data = self.__paddingData(self.data)
+        data = self._padding_data(self.data)
         en_data = aes.encrypt(data)
         return MData(en_data)
 
-    def __decrypt(self):
+    def _decrypt(self):
         if self.mode == AES.MODE_CBC:
             aes = AES.new(self.key, self.mode, self.iv)
         elif self.mode == AES.MODE_ECB:
@@ -193,6 +193,6 @@ class AESCryptor:
             print("不支持这种模式")
             return
         data = aes.decrypt(self.data)
-        m_data = MData(self.__stripPaddingData(data), characterSet=self.characterSet)
+        m_data = MData(self._strip_padding_data(data), character_set=self.characterSet)
         return m_data
 
