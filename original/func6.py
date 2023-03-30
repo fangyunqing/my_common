@@ -79,7 +79,7 @@ def o(t, r):
         i.append(f"{s}={t[s]}")
     c = o_func1.g("&".join(i), None, None)
     h = ""
-    f = ["1", "3", "6", "6", "7", "6", "8"]
+    f = ["1", "9", "2", "0", "1", "0", "8", "0"]
     for v_o in range(0, len(f)):
         h += _d[f[v_o]]
 
