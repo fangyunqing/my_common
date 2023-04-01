@@ -8,6 +8,7 @@ __author__ = 'fyq'
 import time
 import original.func5 as o_func5
 import original.func1 as o_func1
+from original.encryption import encryption
 
 _n = "moonshad5moonsh2"
 _i = "moonshad3moonsh0"
@@ -79,5 +80,12 @@ def c(t, r, e):
         if str(v_a)[0: 2] == "00":
             break
 
-    
+    n = {
+            "time": v_i["time"],
+            "alg": v_i["alg"],
+            "sig": encryption(v_i, None, e),
+            "elapsed": int(time.time() * 1000) - v_o,
+            "shaOne": v_a
+    }
 
+    return n

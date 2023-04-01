@@ -73,9 +73,7 @@ def get_api_info():
         "charset": "utf-8",
         "processData": ""
     }
-    o_func3.jsonp(d + t, i, s)
 
+    return o_func3.jsonp(d + t, i, s)
 
-if __name__ == "__main__":
-    get_api_info()
 
