@@ -65,7 +65,6 @@ def jsonp(n, i, s):
                 )
             }
     """
-    s = s if s else {}
     i["traceid"] = ""
     o = {}
     for k, v in i.items():

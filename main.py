@@ -1,28 +1,34 @@
-if __name__ == "__main__":
+import random
+import string
+
+import requests
+
+from api import get_api_info
 
 
+def random_callback(rule="??__???__??????"):
+    res = ""
+    for index, r in enumerate(rule):
+        if r == "?":
+            if index in [0, 1] or random.randint(0, 1) == 0:
+                res += random.choice(string.ascii_lowercase)
+            else:
+                res += str(int(random.random() * 10))
+        else:
+            res += r
+    return res
 
 
-    def f(t):
-        e = [0 for index in range(0, (len(t) >> 2) + 1)]
-        for index in range(0, len(t) * 8, 8):
-            e[index >> 5] |= (255 & ord(t[index // 8])) << index % 32
-        return e
+headers = {
+    "Host": "passport.baidu.com",
+    "Referer": "https://zhidao.baidu.com/",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+}
 
+session = requests.session()
+session.headers = headers
+response = session.get("https://www.baidu.com",)
 
-    values = {
-        "alg": "v3",
-        "apiver": "v3",
-        "class": "login",
-        "gid": "7F4118F-03A4-4E4C-B2A9-9FB843FA9D6B",
-        "logintype": "dialogLogin",
-        "loginversion": "v4",
-        "subpro": "",
-        "time": 1679202512,
-        "token": "",
-        "tpl": "ik",
-        "tt": 1679202480912
-    }
-
-    i = "&".join([f"{k}={v}" for k, v in values.items()])
-    c(f(i), len(i) * 8)
+call_back = random_callback()
+response = session.get(get_api_info())
+print(response)

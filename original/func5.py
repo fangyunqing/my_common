@@ -53,19 +53,19 @@ def g(t):
     r = DefaultList(t)
     e = [0 for index in range(0, 80)]
     n = 1732584193
-    i = -271733879
+    v_i = -271733879
     v_o = -1732584194
-    a = 271733878
+    v_a = 271733878
     s = -1009589776
     for c in range(0, len(r), 16):
         h = n
-        f = i
+        f = v_i
         u = v_o
-        v_l = a
+        v_l = v_a
         d = s
         for p in range(0, 80):
             e[p] = r[c + p] if p < 16 else b(e[p - 3] ^ e[p - 8] ^ e[p - 14] ^ e[p - 16], 1)
-            var1 = w(b(n, 5), y(p, i, v_o, a))
+            var1 = w(b(n, 5), y(p, v_i, v_o, v_a))
             _ = p
             if _ < 20:
                 vv = 1518500249
@@ -77,17 +77,17 @@ def g(t):
                 vv = -899497514
             var2 = w(w(s, e[p]), vv)
             v = w(var1, var2)
-            s = a
-            a = v_o
-            v_o = b(i, 30)
-            i = n
+            s = v_a
+            v_a = v_o
+            v_o = b(v_i, 30)
+            v_i = n
             n = v
         n = w(n, h)
-        i = w(i, f)
+        v_i = w(v_i, f)
         v_o = w(v_o, u)
-        a = w(a, v_l)
+        v_a = w(v_a, v_l)
         s = w(s, d)
-    return [n, i, v_o, a, s]
+    return [n, v_i, v_o, v_a, s]
 
 
 def b(t, r):

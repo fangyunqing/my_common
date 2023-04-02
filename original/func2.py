@@ -5,7 +5,6 @@
 
 __author__ = 'fyq'
 
-import datetime
 import time
 from typing import Any, Dict
 from urllib.parse import unquote

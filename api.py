@@ -74,6 +74,6 @@ def get_api_info():
         "processData": ""
     }
 
-    return o_func3.jsonp(d + t, i, s)
+    return o_func3.jsonp(d + t, i, s) + "&callback=bd__cbs__mzuv9b"
 
 

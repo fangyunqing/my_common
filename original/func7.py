@@ -29,7 +29,7 @@ def a(e):
     if isinstance(e, dict):
         t = []
         for k, v in e.items():
-            if v:
+            if v is not None:
                 if len(t) > 0:
                     t.append("&")
                 if isinstance(v, bool):
@@ -46,7 +46,7 @@ def a(e):
 def r(e, t):
     t = a(t)
     if isinstance(t, str):
-        if "?" in t:
+        if "?" in e:
             e += "&" + a(t)
         else:
             e += "?" + a(t)
