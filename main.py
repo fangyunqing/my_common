@@ -19,6 +19,10 @@ def random_callback(rule="??__???__??????"):
     return res
 
 
+def pack_callback(call_back):
+    return "&call_back=" + call_back
+
+
 headers = {
     "Host": "passport.baidu.com",
     "Referer": "https://zhidao.baidu.com/",
@@ -27,8 +31,7 @@ headers = {
 
 session = requests.session()
 session.headers = headers
-response = session.get("https://www.baidu.com",)
+session.get("https://www.baidu.com", )
 
-call_back = random_callback()
-response = session.get(get_api_info())
-print(response)
+call_back_name = random_callback()
+response = session.get(get_api_info() + pack_callback(call_back_name))
