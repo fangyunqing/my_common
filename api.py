@@ -77,3 +77,28 @@ def get_api_info():
     return o_func3.jsonp(d + t, i, s) + "&callback=bd__cbs__mzuv9b"
 
 
+def login(user_name, password):
+    i = {
+        "codeString": "",
+        "detect": "1",
+        "gid": _guid_random(),
+        "idc": "",
+        "isPhone": "",
+        "logLoginType": "pc_loginDialog",
+        "loginMerge": "true",
+        "logintype": "dialogLogin",
+        "memberPass": "on",
+        "mkey": "",
+        "password": password,
+        "quick_user": "0",
+        "safeFlag": "0",
+        "splogin": "rate",
+        "staticPage": "https://zhidao.baidu.com/static/common/https-html/v3Jump.html",
+        "subpro": "",
+        "u": "https://zhidao.baidu.com/",
+        "userName": user_name,
+        "verifyCode": ""
+
+
+
+    }
