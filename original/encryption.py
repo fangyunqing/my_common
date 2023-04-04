@@ -1,7 +1,7 @@
 import base64
 
 import original.func6 as o_func6
-from aes import AESCryptor, MData
+from encryption.ase import AESCryptor, MData
 from Crypto.Cipher import AES
 
 version = "v3"

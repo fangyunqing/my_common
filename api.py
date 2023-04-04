@@ -74,7 +74,7 @@ def get_api_info():
         "processData": ""
     }
 
-    return o_func3.jsonp(d + t, i, s) + "&callback=bd__cbs__mzuv9b"
+    return o_func3.jsonp(d + t, i, s)
 
 
 def login(user_name, password):
@@ -98,7 +98,6 @@ def login(user_name, password):
         "u": "https://zhidao.baidu.com/",
         "userName": user_name,
         "verifyCode": ""
-
-
-
     }
+
+

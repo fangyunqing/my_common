@@ -4,6 +4,7 @@ import string
 import requests
 
 from api import get_api_info
+import json
 
 
 def random_callback(rule="??__???__??????"):
@@ -35,3 +36,9 @@ session.get("https://www.baidu.com", )
 
 call_back_name = random_callback()
 response = session.get(get_api_info() + pack_callback(call_back_name))
+
+response_dict = json.loads(response.text.replace(call_back_name, "").replace(")", "").replace("(", "").replace("'", '"'))
+
+data = {
+    "token": response_dict['data']['token']
+}
