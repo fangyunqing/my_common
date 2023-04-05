@@ -3,26 +3,8 @@ import string
 
 import requests
 
-from api import get_api_info
+from api import get_api_info, get_public_key
 import json
-
-
-def random_callback(rule="??__???__??????"):
-    res = ""
-    for index, r in enumerate(rule):
-        if r == "?":
-            if index in [0, 1] or random.randint(0, 1) == 0:
-                res += random.choice(string.ascii_lowercase)
-            else:
-                res += str(int(random.random() * 10))
-        else:
-            res += r
-    return res
-
-
-def pack_callback(call_back):
-    return "&call_back=" + call_back
-
 
 headers = {
     "Host": "passport.baidu.com",
@@ -34,11 +16,6 @@ session = requests.session()
 session.headers = headers
 session.get("https://www.baidu.com", )
 
-call_back_name = random_callback()
-response = session.get(get_api_info() + pack_callback(call_back_name))
+res_dict = get_api_info(session)
 
-response_dict = json.loads(response.text.replace(call_back_name, "").replace(")", "").replace("(", "").replace("'", '"'))
-
-data = {
-    "token": response_dict['data']['token']
-}
+res_dict = get_public_key(session)
