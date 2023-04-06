@@ -1,6 +1,5 @@
 from original.default_list import DefaultList
-from original.util import unsigned_right_shift, left_shift
-from urllib.parse import quote
+from util import unsigned_right_shift, left_shift
 
 
 def _u(t, r):

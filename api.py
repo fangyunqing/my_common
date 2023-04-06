@@ -6,9 +6,7 @@
 __author__ = 'fyq'
 
 import json
-import random
-import string
-import uuid
+import time
 from typing import Dict
 
 from requests import Session
@@ -16,28 +14,8 @@ from requests import Session
 import original.func2 as o_func2
 import original.func3 as o_func3
 from encryption.rsa import rsa
-
-
-def _guid_random():
-    guid = str(uuid.uuid4()).upper()
-    return guid[1: len(guid)] + guid[0]
-
-
-def random_callback(rule="??__???__??????"):
-    res = ""
-    for index, r in enumerate(rule):
-        if r == "?":
-            if index in [0, 1] or random.randint(0, 1) == 0:
-                res += random.choice(string.ascii_lowercase)
-            else:
-                res += str(int(random.random() * 10))
-        else:
-            res += r
-    return res
-
-
-def pack_callback(call_back):
-    return "&call_back=" + call_back
+from original.func8 import mkd_data_login_fn
+from util import _guid_random, random_callback, pack_callback
 
 
 def get_api_info(session: Session):
@@ -139,9 +117,8 @@ def login(session: Session, **kwargs):
         "rsaKey": key,
         "crypttype": 12,
     }
-
-
-
+    e = {"initTime": int(time.time() * 1000)}
+    mkd_data_login_fn(e, i)
 
 
 def get_public_key(session: Session):
@@ -168,3 +145,6 @@ def get_public_key(session: Session):
         "pubkey": response_dict.get("pubkey", None),
         "key": response_dict.get("key", None),
     }
+
+
+

@@ -1,6 +1,6 @@
 import base64
 import unittest
-from original.encryption import encryption
+from original.encryption import encryption, encryption1
 from encryption import rsa
 
 
@@ -31,3 +31,9 @@ class TestEncryption(unittest.TestCase):
               '\njJB2EfX4ZHHbppucjaQatKsO0A5ouLO4glQGtiRZuVbxeN13b5E4FNVZ9+g8kj2e\nR9aWWBkFafs4d8tbtwIDAQAB\n-----END ' \
               'PUBLIC KEY-----\n '
         print(rsa.rsa(key, "fang353523500"))
+
+    def test_encryption1(self):
+
+        n = '{"cl":[{"x":453,"y":548,"t":1680743140416}],"mv":[{"fx":349,"fy":26,"t":1680743138782,"bf":2},{"fx":388,"fy":89,"t":1680743138934,"bf":2},{"fx":527,"fy":191,"t":1680743139087,"bf":2},{"fx":583,"fy":387,"t":1680743139823,"bf":2},{"fx":481,"fy":496,"t":1680743139982,"bf":2},{"fx":463,"fy":523,"t":1680743140134,"bf":2},{"fx":453,"fy":548,"t":1680743140287,"bf":2}],"sc":[{"tx":0,"ty":0}],"kb":[],"sb":[],"sd":[],"sm":[],"cr":{"screenTop":0,"screenLeft":0,"clientWidth":575,"clientHeight":918,"screenWidth":1920,"screenHeight":1080,"availWidth":1920,"availHeight":1040,"outerWidth":1920,"outerHeight":1040,"scrollWidth":1203,"scrollHeight":1203},"simu":0,"ac_c":0}'
+        r = "85c7b2bdappsapi0"
+        print(encryption1(n, r))

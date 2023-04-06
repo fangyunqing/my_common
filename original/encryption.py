@@ -13,3 +13,10 @@ def encryption(t, r, e):
     m_data = aes.encrypt_from_string(n)
     res = m_data.to_base64()
     return base64.b64encode(res.encode()).decode()
+
+
+def encryption1(n, r):
+    aes = AESCryptor(r.encode(), AES.MODE_ECB, None, padding_mode="PKCS7Padding", character_set='utf-8')
+    m_data = aes.encrypt_from_string(n)
+    res = m_data.to_base64()
+    return res

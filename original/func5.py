@@ -1,5 +1,5 @@
 from original.default_list import DefaultList
-from original.util import left_shift, unsigned_right_shift
+from util import left_shift, unsigned_right_shift
 
 a = 0
 
