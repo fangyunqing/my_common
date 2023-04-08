@@ -5,8 +5,11 @@
 
 __author__ = 'fyq'
 
+import time
+
 import requests
 
+from original.func9 import S
 from util import create_page_token
 
 _headers = {
@@ -36,17 +39,17 @@ b = {
 }
 
 F = {
-    "EnableKSEvent": b.get("flag") >> 1 & 1,
-    "EnableMCEvent": b.get("flag") >> 2 & 1,
-    "EnableMPEvent": b.get("flag") >> 3 & 1,
-    "RecordTimeInterval": b.get("flag") >> 6 & 1,
+    "EnableKSEvent": b.get("Flag") >> 1 & 1,
+    "EnableMCEvent": b.get("Flag") >> 2 & 1,
+    "EnableMPEvent": b.get("Flag") >> 3 & 1,
+    "RecordTimeInterval": b.get("Flag") >> 6 & 1,
     "BrowserInfo": True,
     "LSIDInfo": True,
     "Location": True,
-    "Token": b.get("flag") >> 12 & 1,
+    "Token": b.get("Flag") >> 12 & 1,
     "ScreenInfo": True,
     "FlashInfo": True,
-    "DVID": b.get("flag") >> 17 & 1,
+    "DVID": b.get("Flag") >> 17 & 1,
     "PageToken": b.get("Token"),
     "ImgUrl": b.get("ImgUrl"),
     "EltAttrs": [],
@@ -64,5 +67,29 @@ F = {
     "SendTimer": b.get("SendTimer", 1e3),
 }
 
+LG_DV_ARG = {
+
+}
+
+
+def I():
+    w = {
+        "mouseDown": "",
+        "keyDown": "",
+        "mouseMove": "",
+        "version": 26,
+        "loadTime": int(time.time() * 1000) / 1000,
+        "browserInfo": "1,2,101",
+        "token": F.get("PageToken"),
+        "location": "https://zhidao.baidu.com/,undefined",
+        "screenInfo": "0,0,205,2102,1920,1080,1920,1920,1040",
+        "flashInfo": None
+    }
+
+    LG_DV_ARG["dvjsInput"] = w.get("token") + "@" + S(w, w.get("token"))
+
+
 F["SendMethod"] = F["SendMethod"] | 1
+
+I()
 

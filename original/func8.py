@@ -3,7 +3,7 @@ import time
 from typing import Dict
 
 from original.encryption import encryption1
-from extend import session
+from extend import session, LG_DV_ARG
 from util import jquery_random_call_back, pack_callback, replace_text2dict
 
 _rzData = {
@@ -162,6 +162,8 @@ def login_fn(e: Dict, t: Dict, n: Dict):
     n["bdint_sync_cookie"] = ""
     n["ds"] = t.get("ds", "")
     n["tk"] = t.get("tk", "")
+    n["dv"] = LG_DV_ARG["dvjsInput"]
+
 
 
 def mkd_data_login_fn(e: Dict, i: Dict):
