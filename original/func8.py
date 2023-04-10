@@ -163,6 +163,24 @@ def login_fn(e: Dict, t: Dict, n: Dict):
     n["ds"] = t.get("ds", "")
     n["tk"] = t.get("tk", "")
     n["dv"] = LG_DV_ARG["dvjsInput"]
+    n["fuid"] = "FOCoIC3q5fKa8fgJnwzbE67EJ49BGJeplOzf" \
+                "+4l4EOvDuu2RXBRv6R3A1AZMa49I27C0gDDLrJyxcIIeAeEhD8JYsoLTpBiaCXhLqvzbzmvy3SeAW17tKgNq/Xx" \
+                "+RgOdb8TWCFe62MVrDTY6lMf2GrfqL8c87KLF2qFER3obJGnjiLb/rMwxEvVVuyPNNNl4GEimjy3MrXEpSuItnI4KD9MnM35" \
+                "/VGxYufd0UYIwbu0cW75Db8WhomcJu" \
+                "+x2nrVmXft9nx2n76hgVSijFwbwMBJsVwXkGdF24AsEQ3K5XBbh9EHAWDOg2T1ejpq0s2eFy9ar" \
+                "/j566XqWDobGoNNfmfpaEhZpob9le2b5QIEdiQeMGGtnCq9fZ/aAmiQfaXFfXhLZ126CPFCIEuj/nWa+RPzg/CQV+t396RcQ" \
+                "+QB5B6TasmgOrJ40n63OsKSOpoSLpklEtTKfx5hHc9j4nurRraXUHgNWSPA31ou" \
+                "+XTSfsKyVXVSGGnkUB7qA0khSm2nsQwBpdgqbXUb4lU+zNAV2n0AktybhhKxhReRo8jZOXronbjpyaNZANNqEA4g1HmtdHmv" \
+                "/tVUjVExnyBvjSrtrPu8IrnpcuigpPlr6uwWt" \
+                "/lm7TLIKKJqASWGtMQ6010Ekmrx4fAQe4UGeL1qFLCkLufcHrqfCa5DTkTHzExvWtxZ2QvyTjxXMcJvDDEe3McIycHFbZmbEY9" \
+                "LT3RuWsSjij5HIeKAxeCJRzKQmiJrt2NdSKvywx+j+Lr1+UH4yIiICKGteyr20MMrmevIGEgV8AB2DZ99xPOTpxsivktP0eWN/q" \
+                "1uQn9VsBjBmLNQsYnwiX1i39zQE19TGybrzqrM1pMrcfAL1vAAGPaqoVSU+0UqC6Ax2W4+eWZGSFET4OOzFASXPux8VNAq3GJK6" \
+                "GH5F7Bx8VJ2MfThAR9JY85BUmPjqOlbhrblXFkBQG7n4JKiZyalk9X22FXe2MsdipOHFxSUHSqbPo2PPJzEor12m6lThR7YgmlfL" \
+                "t7kntJD5XeM7GEQw3OLo5dsSUeQDd6vDnkb72/TMYcbPW48WuSnSgMDL820G6v5sII3fbIl1IswRGEQw3OLo5dsSUeQDd6vDntVl" \
+                "lC1+aCCc8K28RWpYmU0S24R9DDZVx3j3+tLLpw3BRuF/lI7yGQ5dEntCEMtnVaOBuNLhAhlddA7KpjMdW1UU5ZZ2QvNYYVj4Mcvs" \
+                "dmZl2ssb09Yk1KUaxhNd9iuw6w== "
+
+
 
 
 
