@@ -3,7 +3,7 @@ import string
 
 import requests
 
-from api import get_api_info, get_public_key
+from api import get_api_info, get_public_key, login
 import json
 
 headers = {
@@ -16,6 +16,8 @@ session = requests.session()
 session.headers = headers
 session.get("https://www.baidu.com", )
 
-res_dict = get_api_info(session)
+res_dict = get_api_info()
 
-res_dict = get_public_key(session)
+res_dict = {**res_dict, **get_public_key()}
+
+login(**res_dict, username="18750767178", password="fang353523500")

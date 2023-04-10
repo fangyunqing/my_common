@@ -14,12 +14,12 @@ from requests import Session
 import original.func2 as o_func2
 import original.func3 as o_func3
 from encryption.rsa import rsa
-from extend import g_p, g_m
+from extend import g_p, g_m, session
 from original.func8 import mkd_data_login_fn
 from util import _guid_random, random_callback, pack_callback
 
 
-def get_api_info(session: Session):
+def get_api_info():
     n = {
         "apiType": "login",
         "gid": _guid_random(),
@@ -46,7 +46,7 @@ def get_api_info(session: Session):
     }
 
 
-def login(session: Session, **kwargs):
+def login(**kwargs):
     password = kwargs.get("password", "")
     username = kwargs.get("username", "")
     token = kwargs.get("token", "")
@@ -80,7 +80,7 @@ def login(session: Session, **kwargs):
     mkd_data_login_fn(e, i)
 
 
-def get_public_key(session: Session):
+def get_public_key():
     n = {
         "gid": _guid_random(),
         "loginVersion": "v5",

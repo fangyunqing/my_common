@@ -3,8 +3,10 @@ import time
 from typing import Dict
 
 from original.encryption import encryption1
-from extend import session, LG_DV_ARG
-from util import jquery_random_call_back, pack_callback, replace_text2dict
+from extend import session, LG_DV_ARG, g_p, g_m
+from util import jquery_random_call_back, pack_callback, replace_text2dict, random_callback
+import original.func2 as o_func2
+import original.func3 as o_func3
 
 _rzData = {
     "cl": [
@@ -179,9 +181,18 @@ def login_fn(e: Dict, t: Dict, n: Dict):
                 "t7kntJD5XeM7GEQw3OLo5dsSUeQDd6vDnkb72/TMYcbPW48WuSnSgMDL820G6v5sII3fbIl1IswRGEQw3OLo5dsSUeQDd6vDntVl" \
                 "lC1+aCCc8K28RWpYmU0S24R9DDZVx3j3+tLLpw3BRuF/lI7yGQ5dEntCEMtnVaOBuNLhAhlddA7KpjMdW1UU5ZZ2QvNYYVj4Mcvs" \
                 "dmZl2ssb09Yk1KUaxhNd9iuw6w== "
-
-
-
+    v_e = "login"
+    i = o_func2.i(n, v_e, g_p.get(v_e, None), g_m.get(v_e, None), False)
+    d = "https://passport.baidu.com"
+    v_t = "/v2/api/?login"
+    s = {
+        "charset": "utf-8",
+        "processData": ""
+    }
+    url = o_func3.jsonp(d + v_t, i, s)
+    call_back = "parent." + random_callback()
+    response = session.post(url=url + pack_callback(call_back))
+    pass
 
 
 def mkd_data_login_fn(e: Dict, i: Dict):

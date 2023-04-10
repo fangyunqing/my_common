@@ -93,7 +93,7 @@ def i(e: Dict[str, Any], t, n, r, s: bool):
         r = r if r else {}
         for e_key, e_val in e.items():
             if e_key in r:
-                u = r[r](e_val, e)
+                u = r[e_key](e_val)
             else:
                 u = e_val
             if isinstance(u, str) and s:
