@@ -10,7 +10,7 @@ import original.func4 as o_func4
 import original.func7 as o_func7
 
 
-def jsonp(n, i, s):
+def jsonp(i, s):
     """
             n.jsonp = function(n, i, s) {
                 s = s || {},
@@ -94,7 +94,7 @@ def jsonp(n, i, s):
     if _ in o_func4.moonshadV3:
         i = {**i, **o_func4.moonshadV3[_](o, {})}
 
-    return o_func7.r(n, i)
+    return i
 
 
 

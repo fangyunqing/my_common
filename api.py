@@ -30,15 +30,18 @@ def get_api_info():
     e = "getApiInfo"
     i = o_func2.i(n, e, g_p.get(e, None), g_m.get(e, None), False)
     d = "https://passport.baidu.com"
-    t = "/v2/api/?getapi"
+    t = "/v2/api/"
     s = {
         "charset": "utf-8",
         "processData": ""
     }
 
-    url = o_func3.jsonp(d + t, i, s)
+    data: Dict = o_func3.jsonp(i, s)
     call_back = random_callback()
-    response = session.get(url=url + pack_callback(call_back))
+    data["callback"] = call_back
+    data["getapi"] = ""
+    response = session.get(url=d + t, params=data)
+    print(response.text)
     response_dict: Dict = json.loads(
         response.text.replace(call_back, "").replace(")", "").replace("(", "").replace("'", '"'))
     return {
@@ -95,9 +98,11 @@ def get_public_key():
     }
 
     i = o_func2.i(n, e, None, None, False)
-    url = o_func3.jsonp(d + t, i, s)
+    data: Dict = o_func3.jsonp(i, s)
     call_back = random_callback()
-    response = session.get(url=url + pack_callback(call_back))
+    data["callback"] = call_back
+    response = session.get(d + t, params=data)
+    print(response.text)
     response_dict: Dict = json.loads(
         response.text.replace(call_back, "").replace(")", "").replace("(", "").replace("'", '"'))
     return {

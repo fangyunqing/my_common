@@ -189,10 +189,12 @@ def login_fn(e: Dict, t: Dict, n: Dict):
         "charset": "utf-8",
         "processData": ""
     }
-    url = o_func3.jsonp(d + v_t, i, s)
+    data: Dict = o_func3.jsonp(i, s)
+
     call_back = "parent." + random_callback()
-    response = session.post(url=url + pack_callback(call_back))
-    pass
+    data["callback"] = call_back
+    response = session.post(d + v_t, data=data)
+    print(response.text)
 
 
 def mkd_data_login_fn(e: Dict, i: Dict):
